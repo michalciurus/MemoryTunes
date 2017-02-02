@@ -51,7 +51,7 @@ extension MenuTableViewController: StoreSubscriber {
             return cell
         }
         
-        self.tableView.dataSource = tableDataSource
-        self.tableView.reloadData()
+        tableView.dataSource = tableDataSource
+        tableView.reloadData()
     }
 }
