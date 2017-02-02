@@ -42,17 +42,14 @@ final class AppRouter: StoreSubscriber {
     private func pushViewController(identifier: String, animated: Bool) {
         let viewController = instantiateViewController(identifier: identifier)
         let newViewControllerType = type(of: viewController)
-        var shouldPush = true
         if let currentVc = navigationController.topViewController {
             let currentViewControllerType = type(of: currentVc)
             if currentViewControllerType == newViewControllerType {
-                shouldPush = false
+                return
             }
         }
-        
-        if shouldPush {
-            navigationController.pushViewController(viewController, animated: animated)
-        }
+    
+        navigationController.pushViewController(viewController, animated: animated)
     }
     
     private func instantiateViewController(identifier: String) -> UIViewController {
