@@ -23,7 +23,7 @@ final class CollectionDataSource<V, T>: NSObject, UICollectionViewDataSource whe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return array.count
+        return array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

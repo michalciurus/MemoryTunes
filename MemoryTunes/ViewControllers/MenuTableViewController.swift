@@ -10,12 +10,12 @@ import UIKit
 import ReSwift
 
 final class MenuTableViewController: UITableViewController {
-
+    
     var tableDataSource: TableDataSource<UITableViewCell, String>?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                
+        
         store.subscribe(self) { state in
             state.menuState
         }
@@ -33,9 +33,9 @@ final class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var routeDestination: RoutingDestination = .categories
         switch(indexPath.row) {
-            case 0: routeDestination = .game
-            case 1: routeDestination = .categories
-            default: break
+        case 0: routeDestination = .game
+        case 1: routeDestination = .categories
+        default: break
         }
         
         store.dispatch(RoutingAction(destination: routeDestination))
