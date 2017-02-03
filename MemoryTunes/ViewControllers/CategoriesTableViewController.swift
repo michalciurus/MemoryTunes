@@ -36,11 +36,7 @@ extension CategoriesTableViewController: StoreSubscriber {
     func newState(state: CategoriesState) {
         tableDataSource = TableDataSource(cellIdentifier:"CategoryCell", models: state.categories) {cell, model in
             cell.textLabel?.text = model.rawValue
-            if state.currentCategorySelected == model {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
+            cell.accessoryType = (state.currentCategorySelected == model) ? .checkmark : .none
             return cell
         }
         

@@ -8,10 +8,10 @@
 
 import ReSwift
 
-enum RoutingDestination {
-    case menu
-    case categories
-    case game
+enum RoutingDestination: String {
+    case menu = "MenuTableViewController"
+    case categories = "CategoriesTableViewController"
+    case game = "GameViewController"
 }
 
 final class AppRouter: StoreSubscriber {
@@ -28,15 +28,7 @@ final class AppRouter: StoreSubscriber {
     
     func newState(state: RoutingState) {
         let shouldAnimate = navigationController.topViewController != nil
-        navigateTo(destination: state.navigationState, animated: shouldAnimate)
-    }
-    
-    private func navigateTo(destination: RoutingDestination, animated: Bool) {
-        switch(destination) {
-        case .categories: pushViewController(identifier: "CategoriesTableViewController", animated: animated)
-        case .menu: pushViewController(identifier: "MenuTableViewController", animated: animated)
-        case .game: pushViewController(identifier: "GameViewController", animated: animated)
-        }
+        pushViewController(identifier: state.navigationState.rawValue, animated: shouldAnimate)
     }
     
     private func pushViewController(identifier: String, animated: Bool) {
