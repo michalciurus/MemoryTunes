@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>JSQDataSourcesKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +27,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2B4B674C07D852603401CEF78A1858A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7120477A4E818830F798BD0E9AD3AF15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B116E85B025013E9499A4E0C07486E7D</key>
+		<key>B168BCD327A8F142E1C9B81044965DD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3B75BB55D982D711FB853C88B9B4B94</key>
+		<key>F89388514D4377C4B5D956624729E6E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

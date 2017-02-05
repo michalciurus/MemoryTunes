@@ -9,10 +9,10 @@
 import ReSwift
 import GameplayKit
 
-fileprivate struct GameReducerConstants {
+private struct GameReducerConstants {
     static let numberOfUniqueCards = 8
 }
-fileprivate typealias C = GameReducerConstants
+private typealias C = GameReducerConstants
 
 func gameReducer(action: Action, state: GameState?) -> GameState {
     var state = state ?? GameState(memoryCards: [], showLoading: false)
@@ -32,7 +32,7 @@ func gameReducer(action: Action, state: GameState?) -> GameState {
     return state
 }
 
-fileprivate func generateNewCards(with cardImageUrls:[String]) -> [MemoryCard] {
+private func generateNewCards(with cardImageUrls:[String]) -> [MemoryCard] {
     var memoryCards = cardImageUrls[0..<C.numberOfUniqueCards].map { image -> MemoryCard in
         MemoryCard(imageUrl: image, isFlipped: false, isAlreadyGuessed: false)
     }
@@ -41,7 +41,7 @@ fileprivate func generateNewCards(with cardImageUrls:[String]) -> [MemoryCard] {
     return GKRandomSource.sharedRandom().arrayByShufflingObjects(in: memoryCards) as! [MemoryCard]
 }
 
-fileprivate func flipCard(index: Int,memoryCards: [MemoryCard]) -> [MemoryCard] {
+private func flipCard(index: Int,memoryCards: [MemoryCard]) -> [MemoryCard] {
     var changedCards = memoryCards
     
     let cardsInGame = changedCards.filter({ card -> Bool in
@@ -70,7 +70,7 @@ fileprivate func flipCard(index: Int,memoryCards: [MemoryCard]) -> [MemoryCard] 
     return changedCards
 }
 
-fileprivate func checkGuessedCards(for imageUrl: String, in cards: [MemoryCard]) -> [MemoryCard] {
+private func checkGuessedCards(for imageUrl: String, in cards: [MemoryCard]) -> [MemoryCard] {
     var changedCards = cards
     for index in 0 ..< cards.count {
         if cards[index].imageUrl == imageUrl {
@@ -81,7 +81,7 @@ fileprivate func checkGuessedCards(for imageUrl: String, in cards: [MemoryCard])
     return changedCards
 }
 
-fileprivate func flipBackCards(_ cards: [MemoryCard]) -> [MemoryCard] {
+private func flipBackCards(_ cards: [MemoryCard]) -> [MemoryCard] {
     var changedCards = cards
     for index in 0 ..< cards.count {
         changedCards[index].isFlipped = false

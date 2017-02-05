@@ -1,18 +1,15 @@
 PODS:
-  - JSQDataSourcesKit (6.0.0)
   - Kingfisher (3.3.3)
   - ReSwift (3.0.0)
 
 DEPENDENCIES:
-  - JSQDataSourcesKit (~> 6.0.0)
   - Kingfisher (~> 3.3.3)
   - ReSwift (~> 3.0.0)
 
 SPEC CHECKSUMS:
-  JSQDataSourcesKit: 20cda71984408006b4c3e0cf224343fd1a913d58
   Kingfisher: 893215a42e5c2164e916f69463c68003092b104c
   ReSwift: f0255f4b4f2dacd12c5d97d34d13fc5dad6d6371
 
-PODFILE CHECKSUM: 8b019ff29c742ad99f6d21a3aa6797af2c91f545
+PODFILE CHECKSUM: 82fd8bf2bc2866dfe4b903a866d12f111da6382e
 
 COCOAPODS: 1.2.0

@@ -8,10 +8,11 @@
 
 import ReSwift
 
-fileprivate struct CategoriesReducerConstants {
+private struct CategoriesReducerConstants {
     static let userDefaultsCategoryKey = "currentCategoryKey"
 }
-fileprivate typealias C = CategoriesReducerConstants
+
+private typealias C = CategoriesReducerConstants
 
 func categoriesReducer(action: Action, state: CategoriesState?) -> CategoriesState {
     var currentCategory: Category = .pop
@@ -33,7 +34,7 @@ func categoriesReducer(action: Action, state: CategoriesState?) -> CategoriesSta
     return state
 }
 
-fileprivate func getCurrentCategoryStateFromUserDefaults() -> Category? {
+private func getCurrentCategoryStateFromUserDefaults() -> Category? {
     let userDefaults = UserDefaults.standard
     let rawValue = userDefaults.string(forKey: C.userDefaultsCategoryKey)
     if let rawValue = rawValue {
@@ -43,7 +44,7 @@ fileprivate func getCurrentCategoryStateFromUserDefaults() -> Category? {
     }
 }
 
-fileprivate func saveCurrentCategoryStateFromUserDefaults(category: Category) {
+private func saveCurrentCategoryStateFromUserDefaults(category: Category) {
     let userDefaults = UserDefaults.standard
     userDefaults.set(category.rawValue, forKey: C.userDefaultsCategoryKey)
     userDefaults.synchronize()
