@@ -59,7 +59,9 @@ extension GameViewController: StoreSubscriber {
         
         state.showLoading ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
         
-        if state.gameFinished && !self.hasFinishedGame {
+        let gameFinishedStateChanged = state.gameFinished && !self.hasFinishedGame
+        
+        if gameFinishedStateChanged {
             hasFinishedGame = true
             showGameFinishedAlert()
         }
