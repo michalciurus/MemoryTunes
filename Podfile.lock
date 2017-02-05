@@ -1,0 +1,15 @@
+PODS:
+  - Kingfisher (3.3.3)
+  - ReSwift (3.0.0)
+
+DEPENDENCIES:
+  - Kingfisher (~> 3.3.3)
+  - ReSwift (~> 3.0.0)
+
+SPEC CHECKSUMS:
+  Kingfisher: 893215a42e5c2164e916f69463c68003092b104c
+  ReSwift: f0255f4b4f2dacd12c5d97d34d13fc5dad6d6371
+
+PODFILE CHECKSUM: 82fd8bf2bc2866dfe4b903a866d12f111da6382e
+
+COCOAPODS: 1.2.0
