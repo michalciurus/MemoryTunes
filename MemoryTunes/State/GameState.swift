@@ -16,4 +16,5 @@ struct MemoryCard {
 
 struct GameState: StateType {
     var memoryCards: [MemoryCard]
+    var showLoading: Bool
 }

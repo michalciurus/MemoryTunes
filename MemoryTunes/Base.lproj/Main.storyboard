@@ -97,17 +97,23 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Wsk-Ei-T2T">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.89803921568627454" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rev-4l-7gB" secondAttribute="trailing" constant="10" id="SWj-04-Tct"/>
                             <constraint firstItem="rev-4l-7gB" firstAttribute="top" secondItem="4uo-ej-tN5" secondAttribute="top" constant="30" id="bWg-tn-f7e"/>
+                            <constraint firstItem="Wsk-Ei-T2T" firstAttribute="centerY" secondItem="4uo-ej-tN5" secondAttribute="centerY" id="c1Q-dZ-jVs"/>
                             <constraint firstItem="OkT-kn-HMf" firstAttribute="top" secondItem="rev-4l-7gB" secondAttribute="bottom" id="f6G-1e-hES"/>
                             <constraint firstItem="rev-4l-7gB" firstAttribute="leading" secondItem="4uo-ej-tN5" secondAttribute="leading" constant="10" id="kpA-81-CRO"/>
+                            <constraint firstItem="Wsk-Ei-T2T" firstAttribute="centerX" secondItem="4uo-ej-tN5" secondAttribute="centerX" id="osW-cd-DYH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="rev-4l-7gB" id="Aho-tq-78u"/>
+                        <outlet property="loadingIndicator" destination="Wsk-Ei-T2T" id="xDE-VK-vvG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REa-wT-fDa" userLabel="First Responder" sceneMemberID="firstResponder"/>

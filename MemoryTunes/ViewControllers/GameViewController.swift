@@ -8,11 +8,11 @@
 
 import UIKit
 import ReSwift
-import Kingfisher
 
 final class GameViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var collectionDataSource: CollectionDataSource<CardCollectionViewCell, MemoryCard>?
     
@@ -31,20 +31,23 @@ final class GameViewController: UIViewController {
     override func viewDidLoad() {
         store.dispatch(fetchTunes)
         collectionView.delegate = self
+        loadingIndicator.hidesWhenStopped = true
+        
+        collectionDataSource = CollectionDataSource(cellIdentifier: "CardCell", models: [], configureCell: { (cell, model, lastModel) -> CardCollectionViewCell in
+            cell.configureCell(with: model, lastCardState: lastModel)
+            return cell
+        })
+        collectionView.dataSource = collectionDataSource
     }
 }
 
 extension GameViewController: StoreSubscriber {
     func newState(state: GameState) {
-        collectionDataSource = CollectionDataSource(cellIdentifier: "CardCell", models: state.memoryCards, configureCell: { (cell, model) -> CardCollectionViewCell in
-            let url = URL(string: model.imageUrl)
-            cell.cardImageView.kf.setImage(with: url)
-            cell.cardImageView.isHidden = !(model.isFlipped || model.isAlreadyGuessed)
-            return cell
-        })
-        
-        collectionView.dataSource = collectionDataSource
+
+        collectionDataSource?.models = state.memoryCards
         collectionView.reloadData()
+        
+        state.showLoading ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
     }
 }
 

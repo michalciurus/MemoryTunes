@@ -15,14 +15,16 @@ fileprivate struct GameReducerConstants {
 fileprivate typealias C = GameReducerConstants
 
 func gameReducer(action: Action, state: GameState?) -> GameState {
-    var state = state ?? GameState(memoryCards: [])
+    var state = state ?? GameState(memoryCards: [], showLoading: false)
     
     switch(action) {
     case let setCardsAction as SetCardsAction:
         state.memoryCards = generateNewCards(with: setCardsAction.cardImageUrls)
+        state.showLoading = false
     case let flipCardAction as FlipCardAction:
         state.memoryCards = flipCard(index: flipCardAction.cardIndexToFlip, memoryCards: state.memoryCards)
     case _ as FetchTunesAction:
+        state.showLoading = true
         state.memoryCards = []
     default: break
     }
