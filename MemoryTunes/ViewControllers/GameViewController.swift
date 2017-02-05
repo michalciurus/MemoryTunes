@@ -13,6 +13,7 @@ final class GameViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    var hasFinishedGame: Bool = false
     
     var collectionDataSource: CollectionDataSource<CardCollectionViewCell, MemoryCard>?
     
@@ -39,6 +40,15 @@ final class GameViewController: UIViewController {
         })
         collectionView.dataSource = collectionDataSource
     }
+    
+    fileprivate func showGameFinishedAlert() {
+        let alertController = UIAlertController(title: "Congratulations!", message: "You've finished the game!", preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension GameViewController: StoreSubscriber {
@@ -48,6 +58,11 @@ extension GameViewController: StoreSubscriber {
         collectionView.reloadData()
         
         state.showLoading ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()
+        
+        if state.gameFinished && !self.hasFinishedGame {
+            hasFinishedGame = true
+            showGameFinishedAlert()
+        }
     }
 }
 
