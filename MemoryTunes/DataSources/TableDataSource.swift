@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This class is a simple, immutable, declarative data source for UITableView
 final class TableDataSource<V, T> : NSObject, UITableViewDataSource where V: UITableViewCell {
     
     typealias CellConfiguration = (V, T) -> V

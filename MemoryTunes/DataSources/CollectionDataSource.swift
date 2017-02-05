@@ -8,6 +8,9 @@
 
 import UIKit
 
+/// This class is a mutable, declarative data source for UICollectionView
+/// Apart from the current models array, it contains the last models array
+/// to give the `CellConfiguration` a chance to calculate and react on differences in state
 final class CollectionDataSource<V, T>: NSObject, UICollectionViewDataSource where V: UICollectionViewCell {
     
     typealias CellConfiguration = (V, T, T?) -> V
