@@ -24,9 +24,9 @@
 import ReSwift
 
 struct MenuState: StateType {
-    var menuTitles: [String]
-    
-    init() {
-        menuTitles = ["New Game 🎲", "Choose Category 🎵"];
-    }
+  var menuTitles: [String]
+  
+  init() {
+    menuTitles = ["New Game 🎲", "Choose Category 🎵"];
+  }
 }

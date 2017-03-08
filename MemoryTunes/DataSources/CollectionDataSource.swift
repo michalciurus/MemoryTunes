@@ -26,42 +26,42 @@ import UIKit
 /// Apart from the current models array, it contains the last models array
 /// to give the `CellConfiguration` a chance to calculate and react on differences in state
 final class CollectionDataSource<V, T>: NSObject, UICollectionViewDataSource where V: UICollectionViewCell {
+  
+  typealias CellConfiguration = (V, T, T?) -> V
+  
+  var models: [T] {
+    willSet {
+      lastModels = models
+    }
+  }
+  
+  private var lastModels: [T]?
+  private let configureCell: CellConfiguration
+  private let cellIdentifier: String
+  
+  init(cellIdentifier: String, models: [T], configureCell: @escaping CellConfiguration) {
+    self.models = models
+    self.cellIdentifier = cellIdentifier
+    self.configureCell = configureCell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return models.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? V
     
-    typealias CellConfiguration = (V, T, T?) -> V
-    
-    var models: [T] {
-        willSet {
-            lastModels = models
-        }
+    guard let currentCell = cell else {
+      fatalError("Identifier or class not registered with this collection view")
     }
     
-    private var lastModels: [T]?
-    private let configureCell: CellConfiguration
-    private let cellIdentifier: String
-    
-    init(cellIdentifier: String, models: [T], configureCell: @escaping CellConfiguration) {
-        self.models = models
-        self.cellIdentifier = cellIdentifier
-        self.configureCell = configureCell
+    let model = models[indexPath.row]
+    var lastModel: T? = nil
+    if lastModels?.indices.contains(indexPath.row) == true {
+      lastModel = lastModels![indexPath.row]
     }
+    return configureCell(currentCell, model, lastModel)
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return models.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? V
-        
-        guard let currentCell = cell else {
-            fatalError("Identifier or class not registered with this collection view")
-        }
-        
-        let model = models[indexPath.row]
-        var lastModel: T? = nil
-        if lastModels?.indices.contains(indexPath.row) == true {
-            lastModel = lastModels![indexPath.row]
-        }
-        return configureCell(currentCell, model, lastModel)
-        
-    }
+  }
 }

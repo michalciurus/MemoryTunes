@@ -23,8 +23,8 @@
 import ReSwift
 
 struct AppState: StateType {
-    let routingState: RoutingState
-    let menuState: MenuState
-    let categoriesState: CategoriesState
-    let gameState: GameState
+  let routingState: RoutingState
+  let menuState: MenuState
+  let categoriesState: CategoriesState
+  let gameState: GameState
 }

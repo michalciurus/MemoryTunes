@@ -24,5 +24,5 @@
 import ReSwift
 
 struct ChangeCategoryAction: Action {
-    let categoryIndex: Int
+  let categoryIndex: Int
 }

@@ -24,5 +24,5 @@
 import ReSwift
 
 struct SetCardsAction: Action {
-    let cardImageUrls: [String]
+  let cardImageUrls: [String]
 }

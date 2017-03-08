@@ -24,5 +24,5 @@
 import ReSwift
 
 struct FlipCardAction: Action {
-    let cardIndexToFlip: Int
+  let cardIndexToFlip: Int
 }

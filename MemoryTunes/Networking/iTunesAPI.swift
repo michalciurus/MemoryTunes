@@ -24,43 +24,43 @@
 import Foundation
 
 final class iTunesAPI {
-    static func searchFor(category: String, completion: @escaping ([String]) -> Void) {
-        
-        let urlString = "https://itunes.apple.com/search?term=\(category)&media=music"
-        let urlRequest: URLRequest = URLRequest(url: URL(string: urlString)!)
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: urlRequest) { (data, response, error) in
-            
-            //TODO: React on errors
-            guard error == nil else {
-                completion([])
-                return
-            }
-            
-            do {
-                let strings = try iTunesAPI.parseResponseToImageUrls(data!)
-                DispatchQueue.main.async {
-                    completion(strings)
-                }
-            } catch {
-                fatalError("Could not fetch/parse image urls from the server")
-            }
+  static func searchFor(category: String, completion: @escaping ([String]) -> Void) {
+    
+    let urlString = "https://itunes.apple.com/search?term=\(category)&media=music"
+    let urlRequest: URLRequest = URLRequest(url: URL(string: urlString)!)
+    let session = URLSession.shared
+    
+    let task = session.dataTask(with: urlRequest) { (data, response, error) in
+      
+      //TODO: React on errors
+      guard error == nil else {
+        completion([])
+        return
+      }
+      
+      do {
+        let strings = try iTunesAPI.parseResponseToImageUrls(data!)
+        DispatchQueue.main.async {
+          completion(strings)
         }
-        
-        task.resume()
+      } catch {
+        fatalError("Could not fetch/parse image urls from the server")
+      }
     }
     
-    static func parseResponseToImageUrls(_ responseData: Data) throws -> [String] {
-        let dictionary = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: AnyObject]
-        let array = dictionary?["results"] as? [[String: AnyObject]]
-        
-        let strings = array!.map { (dictionary) -> String in
-            return dictionary["artworkUrl100"] as! String
-        }
-        
-        return strings
+    task.resume()
+  }
+  
+  static func parseResponseToImageUrls(_ responseData: Data) throws -> [String] {
+    let dictionary = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: AnyObject]
+    let array = dictionary?["results"] as? [[String: AnyObject]]
+    
+    let strings = array!.map { (dictionary) -> String in
+      return dictionary["artworkUrl100"] as! String
     }
+    
+    return strings
+  }
 }
 
 
